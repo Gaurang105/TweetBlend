@@ -33,7 +33,7 @@ export async function POST(request) {
     
     if (!user1Tweets?.length || !user2Tweets?.length) {
       return NextResponse.json(
-        { error: 'Unable to retrieve enough tweets for one or both users' }, 
+        { error: `Twitter handle not found for ${!user1Tweets?.length ? user1Clean : user2Clean}` },
         { status: 400 }
       );
     }
@@ -62,9 +62,7 @@ export async function POST(request) {
     
     // Determine the appropriate status code based on the error
     let statusCode = 500;
-    if (error.message.includes('Twitter handle') || error.message.includes('not found')) {
-      statusCode = 404;
-    } else if (error.message.includes('API key') || error.message.includes('authentication failed')) {
+    if (error.message.includes('API key') || error.message.includes('authentication failed')) {
       statusCode = 401;
     } else if (error.message.includes('Rate limit')) {
       statusCode = 429;
