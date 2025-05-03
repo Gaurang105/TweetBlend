@@ -85,6 +85,17 @@ export default function Home() {
                 Please check your API configuration in the .env file.
               </p>
             )}
+            {error.includes('Twitter handle') && (
+              <p className="mt-2 text-sm">
+                This Twitter handle doesn't exist or is not public. Please check the spelling and try again.
+              </p>
+            )}
+            <button
+              onClick={() => setError('')}
+              className="mt-4 px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800 text-sm"
+            >
+              Try Again
+            </button>
           </div>
         )}
         

@@ -59,9 +59,20 @@ export async function POST(request) {
     return NextResponse.json(result);
   } catch (error) {
     console.error('Error generating blend:', error);
+    
+    // Determine the appropriate status code based on the error
+    let statusCode = 500;
+    if (error.message.includes('Twitter handle') || error.message.includes('not found')) {
+      statusCode = 404;
+    } else if (error.message.includes('API key') || error.message.includes('authentication failed')) {
+      statusCode = 401;
+    } else if (error.message.includes('Rate limit')) {
+      statusCode = 429;
+    }
+    
     return NextResponse.json(
       { error: error.message || 'Failed to generate blend' }, 
-      { status: 500 }
+      { status: statusCode }
     );
   }
 } 
