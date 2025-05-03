@@ -45,7 +45,7 @@ Create a fun, insightful, and detailed "Twitter Blend" analysis comparing these 
 6. One thought-provoking question they might debate about based on their interests
 7. A fictional conversation snippet between them (2-3 exchanges)
 8. A blend persona description (what kind of Twitter user would emerge if they were combined)
-9. "If you met IRL" potentials (dating, friendship, enemy, and "might just kill" potential on a scale of 0-100%)
+9. "If you met IRL" potentials (dating, friendship, enemy, and "might just kill" potential on a scale of 0-100%). IMPORTANT: Generate these potentials by thoroughly analyzing their tweet content and personalities - DO NOT use default values. The potentials should vary significantly based on the actual data.
 
 Your analysis should be witty, entertaining, and insightful. Format the response as JSON with the following structure:
 {
@@ -58,10 +58,10 @@ Your analysis should be witty, entertaining, and insightful. Format the response
   "conversation": ["User1: First exchange", "User2: Response", "User1: Reply"],
   "blendPersona": "A description of what kind of Twitter user would result from combining them",
   "irlPotentials": {
-    "dating": 65,
-    "friendship": 80,
-    "enemy": 25,
-    "mightJustKill": 10
+    "dating": [0-100 based on meaningful analysis of their tweets],
+    "friendship": [0-100 based on meaningful analysis of their tweets],
+    "enemy": [0-100 based on meaningful analysis of their tweets],
+    "mightJustKill": [0-100 based on meaningful analysis of their tweets]
   },
   "summary": "A brief, funny paragraph summarizing their Twitter relationship"
 }
