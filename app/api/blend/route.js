@@ -33,7 +33,7 @@ export async function POST(request) {
     
     if (!user1Tweets?.length || !user2Tweets?.length) {
       return NextResponse.json(
-        { error: `Twitter handle not found for ${!user1Tweets?.length ? user1Clean : user2Clean}` },
+        { error: `One or both Twitter handles are invalid` },
         { status: 400 }
       );
     }
