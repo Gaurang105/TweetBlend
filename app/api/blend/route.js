@@ -2,14 +2,6 @@ import { NextResponse } from 'next/server';
 import { getUserTweets } from '../../utils/api';
 import { generateBlend } from '../../utils/openai';
 
-// Cache for storing previously generated blends
-const blendCache = {};
-
-function getCacheKey(user1, user2) {
-  const handles = [user1, user2].sort();
-  return handles.join('-');
-}
-
 function findBestTweet(tweets) {
   if (!tweets || tweets.length === 0) return null;
 
@@ -33,12 +25,6 @@ export async function POST(request) {
     
     const user1Clean = user1.replace('@', '').trim();
     const user2Clean = user2.replace('@', '').trim();
-    const cacheKey = getCacheKey(user1Clean, user2Clean);
-
-    if (blendCache[cacheKey]) {
-      console.log(`Using cached blend for ${user1Clean} and ${user2Clean}`);
-      return NextResponse.json(blendCache[cacheKey]);
-    }
 
     const [user1Tweets, user2Tweets] = await Promise.all([
       getUserTweets(user1Clean),
@@ -69,8 +55,6 @@ export async function POST(request) {
       user1BestTweet,
       user2BestTweet
     };
-
-    blendCache[cacheKey] = result;
     
     return NextResponse.json(result);
   } catch (error) {

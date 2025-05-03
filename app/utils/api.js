@@ -3,9 +3,6 @@ import axios from 'axios';
 const API_KEY = process.env.SCRAPER_API_KEY;
 const BASE_URL = process.env.BASE_URL;
 
-// Cache to store previously fetched tweets to avoid duplicate API calls
-const tweetCache = {};
-
 /**
  * Fetches tweets for a given Twitter handle
  * @param {string} handle - Twitter handle without the @ symbol
@@ -13,11 +10,6 @@ const tweetCache = {};
  */
 export async function getUserTweets(handle) {
   const cleanHandle = handle.replace('@', '').trim();
-  
-  if (tweetCache[cleanHandle]) {
-    console.log(`Using cached tweets for ${cleanHandle}`);
-    return tweetCache[cleanHandle];
-  }
   
   try {
     const response = await axios.get(BASE_URL, {
@@ -28,8 +20,6 @@ export async function getUserTweets(handle) {
         'x-api-key': API_KEY
       }
     });
-    
-    tweetCache[cleanHandle] = response.data.tweets;
     
     return response.data.tweets;
   } catch (error) {
