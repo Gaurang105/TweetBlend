@@ -40,7 +40,7 @@ Create a fun, insightful, and detailed "Twitter Blend" analysis comparing these 
 1. A catchy title for their blend
 2. 4-6 common topics/themes they both tweet about
 3. 3-4 major differences in their tweeting styles or interests
-4. A humorous compatibility score (from 0-100%)
+4. A humorous compatibility score (from 0-100%) - IMPORTANT: This score should be based on meaningful analysis of their tweet content and personalities, NOT a random number
 5. A funny fictional tweet that represents a perfect blend of both their styles
 6. A fictional conversation snippet between them (2-3 exchanges) based on their actual tweet content and styles
 7. A blend persona description (what kind of Twitter user would emerge if they were combined)
@@ -49,7 +49,7 @@ Create a fun, insightful, and detailed "Twitter Blend" analysis comparing these 
 Your analysis should be witty, entertaining, and insightful. Format the response as JSON with the following structure:
 {
   "title": "Catchy blend title",
-  "compatibilityScore": 75,
+  "compatibilityScore": [0-100 based on meaningful analysis of their tweets],
   "commonThemes": ["Theme 1", "Theme 2", "Theme 3", "Theme 4"],
   "differences": ["Difference 1", "Difference 2", "Difference 3"],
   "blendedTweet": "A sample tweet that combines both styles",
