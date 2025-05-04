@@ -10,7 +10,13 @@ const openai = new OpenAI({
  * @returns {Array} - Array of tweet text contents
  */
 function extractTweetContent(tweets) {
-  return tweets.map(tweet => tweet?.legacy?.full_text || '').filter(text => text);
+  return tweets
+    .filter(tweet => tweet && typeof tweet === 'object')
+    .map(tweet => {
+      if (!tweet.legacy) return '';
+      return tweet.legacy.full_text || '';
+    })
+    .filter(text => text);
 }
 
 /**

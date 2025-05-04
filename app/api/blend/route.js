@@ -5,12 +5,18 @@ import { generateBlend } from '../../utils/openai';
 function findBestTweet(tweets) {
   if (!tweets || tweets.length === 0) return null;
 
-  return tweets.reduce((best, current) => {
+  // Filter out any tweets that don't have the legacy property
+  const validTweets = tweets.filter(tweet => tweet && tweet.legacy);
+  
+  // If no valid tweets after filtering, return the first tweet or null
+  if (validTweets.length === 0) return tweets[0];
+
+  return validTweets.reduce((best, current) => {
     const currentEngagement = (current.legacy?.retweet_count || 0) + (current.legacy?.favorite_count || 0);
     const bestEngagement = (best.legacy?.retweet_count || 0) + (best.legacy?.favorite_count || 0);
     
     return currentEngagement > bestEngagement ? current : best;
-  }, tweets[0]);
+  }, validTweets[0]);
 }
 
 export async function POST(request) {

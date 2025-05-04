@@ -1,5 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Footer from './components/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
@@ -27,9 +28,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className="antialiased checkbox-bg">
         <main>{children}</main>
-        <footer className="text-center text-gray-500 text-sm py-8">
-          <p>© {new Date().getFullYear()} TweetBlend. All rights reserved.</p>
-        </footer>
+        <Footer />
       </body>
     </html>
   );

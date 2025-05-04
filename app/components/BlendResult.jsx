@@ -43,17 +43,17 @@ export default function BlendResult({ result }) {
 
   // Format best tweets for display
   const bestTweet1 = user1BestTweet ? {
-    text: user1BestTweet.legacy?.full_text || '',
-    date: formatTweetDate(user1BestTweet),
+    text: user1BestTweet?.legacy?.full_text || 'No tweet text available',
+    date: formatTweetDate(user1BestTweet?.legacy || user1BestTweet),
     metrics: getTweetMetrics(user1BestTweet),
-    profileImageUrl: user1BestTweet.core?.user_results?.result?.legacy?.profile_image_url_https || '/default-avatar.png'
+    profileImageUrl: user1BestTweet?.core?.user_results?.result?.legacy?.profile_image_url_https || '/default-avatar.png'
   } : null;
 
   const bestTweet2 = user2BestTweet ? {
-    text: user2BestTweet.legacy?.full_text || '',
-    date: formatTweetDate(user2BestTweet),
+    text: user2BestTweet?.legacy?.full_text || 'No tweet text available',
+    date: formatTweetDate(user2BestTweet?.legacy || user2BestTweet),
     metrics: getTweetMetrics(user2BestTweet),
-    profileImageUrl: user2BestTweet.core?.user_results?.result?.legacy?.profile_image_url_https || '/default-avatar.png'
+    profileImageUrl: user2BestTweet?.core?.user_results?.result?.legacy?.profile_image_url_https || '/default-avatar.png'
   } : null;
 
   // Render a Twitter card component
